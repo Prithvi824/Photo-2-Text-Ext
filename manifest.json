@@ -1,0 +1,39 @@
+{
+    "manifest_version": 3,
+    "name": "Photo 2 Image",
+    "description": "A extension to extract text from a image directly in chrome.",
+    "version": "1.0.0",
+    "action": {
+        "default_icon": {
+            "16": "icon-16.png",
+            "48": "icon-48.png",
+            "128": "icon-128.png"
+        }
+    },
+    "icons": {
+        "16": "icon-16.png",
+        "48": "icon-48.png",
+        "128": "icon-128.png"
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "scripting"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "js": [
+                "src/content/contentMain.ts"
+            ]
+        }
+    ],
+    "background": {
+        "service_worker": "src/service/serviceMain.ts"
+    }
+}
