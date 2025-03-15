@@ -25,4 +25,10 @@ dist-ssr
 # custom ignores
 dist/
 node_modules/
-
+venv_ext*
+.pytest_cache*
+*pycache*
+Lib*
+Scripts*
+Include*
+pyvenv.cfg

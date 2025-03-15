@@ -29,13 +29,25 @@ chrome.action.onClicked.addListener(async () => {
   const cropImgMsgRes = await sendMsgToContent(cropImgMsg)
   console.log('Cropped Image content: ', cropImgMsgRes)
 
-  //TODO: Receive text
+  // Send the base64 image to an endpoint as a POST request
+  const response = await fetch('http://localhost:8000/convert', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      img: cropImgMsgRes
+    })
+  })
+
+  const responseData = await response.json()
+  console.log('Response from server: ', responseData)
 
   // show the text on the screen
   const showTextMsg: ExtContentMsg = {
     action: Actions.COPY_TEXT,
     data: {
-      text: 'This is the copied text!!'
+      text: responseData.text
     }
   }
   const showTextMsgRes = await sendMsgToContent(showTextMsg)
